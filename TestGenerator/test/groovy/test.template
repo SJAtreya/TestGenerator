@@ -1,0 +1,23 @@
+
+import org.springframework.http.MediaType
+import spock.lang.Specification
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
+
+class ${className}Spec extends Specification {
+
+<% scenarios.each { %>
+
+	def "${it.description}" () {
+
+		given: "${it.given}"
+
+		when: "${it.when}"
+
+		then: "${it.then}"
+		
+		<% if (it.and) out.print 'and: ' it.and %>
+	}
+	<% } %>
+}
