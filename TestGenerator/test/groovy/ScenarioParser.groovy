@@ -1,4 +1,4 @@
- 
+
 class ScenarioParser {
 
 	static def build(def userStory){
@@ -8,7 +8,7 @@ class ScenarioParser {
 			scenarios = userStory.split('Scenario:')
 			scenarios.each {
 				actions = it.split("\\r?\\n")*.trim()
-				if (actions){
+				if (actions && !actions[0].startsWith("Feature:")){
 					builder.addScenario().description(actions[0].trim())
 					actions.each {
 						if (it.startsWith("Given ")){
@@ -24,7 +24,7 @@ class ScenarioParser {
 		}
 		builder.build()
 	}
-	
+
 	static main(String[] args) {
 		String scenario = '''Scenario: Create a new patient
 						Given I am an authenticated NMT
